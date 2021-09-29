@@ -43,6 +43,8 @@ public class Main {
 
         kiiratas();
 
+        System.out.printf("A legnépszerűbb bejegyzésen %d like van", legnepszerubb());
+
     }
     public static void beolvas(String fileName){
         try {
@@ -74,4 +76,16 @@ public class Main {
             System.out.println(item);
         }
     }
+
+    public static int legnepszerubb(){
+        int max = 0;
+        for (Bejegyzes item : bejegyzesekLista) {
+            if (item.getLikeok() > max){
+                max = item.getLikeok();
+            }
+        }
+        return max;
+    }
+
+
 }
