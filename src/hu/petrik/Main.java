@@ -43,7 +43,10 @@ public class Main {
 
         kiiratas();
 
-        System.out.printf("A legnépszerűbb bejegyzésen %d like van", legnepszerubb());
+        System.out.printf("A legnépszerűbb bejegyzésen %d like van\n", legnepszerubb());
+
+        String vanEHarmincotLike = harmincotnelTobbLike() ? "Van" : "Nincs";
+        System.out.println(vanEHarmincotLike + " olyan bejegyzést ami 35-nél több likeot kapott.");
 
     }
     public static void beolvas(String fileName){
@@ -87,5 +90,13 @@ public class Main {
         return max;
     }
 
-
+    public static boolean harmincotnelTobbLike(){
+        boolean van = false;
+        for (Bejegyzes item : bejegyzesekLista) {
+            if (item.getLikeok() > 35){
+                van = true;
+            }
+        }
+        return van;
+    }
 }
