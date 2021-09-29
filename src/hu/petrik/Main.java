@@ -37,6 +37,10 @@ public class Main {
         beolvas("bejegyzesek.txt");
         likeOsztas();
 
+        System.out.print("Add meg mire írjam át a második bejegyzést: ");
+        String modositottBejegyzes = sc.nextLine();
+        bejegyzesekLista.get(1).setTartalom(modositottBejegyzes);
+
     }
     public static void beolvas(String fileName){
         try {
