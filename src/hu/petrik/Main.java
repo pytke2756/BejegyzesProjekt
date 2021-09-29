@@ -48,6 +48,8 @@ public class Main {
         String vanEHarmincotLike = harmincotnelTobbLike() ? "Van" : "Nincs";
         System.out.println(vanEHarmincotLike + " olyan bejegyzést ami 35-nél több likeot kapott.");
 
+        System.out.println(tizenotnelKevesebbLike() + " db bejegyzést van ami 15-nél kevesebb likeot kapott.");
+
     }
     public static void beolvas(String fileName){
         try {
@@ -98,5 +100,15 @@ public class Main {
             }
         }
         return van;
+    }
+
+    public static int tizenotnelKevesebbLike(){
+        int db = 0;
+        for (Bejegyzes item : bejegyzesekLista) {
+            if (item.getLikeok() < 15){
+                db++;
+            }
+        }
+        return db;
     }
 }
