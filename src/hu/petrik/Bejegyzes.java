@@ -45,4 +45,17 @@ public class Bejegyzes {
     public void like(){
         this.likeok++;
     }
+
+    @Override
+    public String toString() {
+        if (this.szerkesztve == this.letrejott){
+            return this.szerzo + " - " + this.likeok + " - " + this.letrejott + "\n" +
+                    this.tartalom;
+        }
+        else {
+            return this.szerzo + " - " + this.likeok + " - " + this.letrejott + "\n" +
+                    "Szerkesztve: " + this.szerkesztve + "\n" +
+                    this.tartalom;
+        }
+    }
 }
