@@ -37,9 +37,11 @@ public class Main {
         beolvas("bejegyzesek.txt");
         likeOsztas();
 
-        System.out.print("Add meg mire írjam át a második bejegyzést: ");
+        System.out.println("Add meg mire írjam át a második bejegyzést: ");
         String modositottBejegyzes = sc.nextLine();
         bejegyzesekLista.get(1).setTartalom(modositottBejegyzes);
+
+        kiiratas();
 
     }
     public static void beolvas(String fileName){
@@ -64,6 +66,12 @@ public class Main {
         int bejegyzesekSzorzata = bejegyzesekLista.size() * 20;
         for (int i = 0; i < bejegyzesekSzorzata; i++) {
             bejegyzesekLista.get(rnd.nextInt(bejegyzesekLista.size())).like();
+        }
+    }
+
+    public static void kiiratas(){
+        for (Bejegyzes item : bejegyzesekLista) {
+            System.out.println(item);
         }
     }
 }
