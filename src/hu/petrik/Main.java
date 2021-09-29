@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +14,7 @@ public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static FileReader fr;
     public static BufferedReader bf;
+    public static Random rnd = new Random();
 
 
     public static void main(String[] args) {
@@ -26,13 +28,15 @@ public class Main {
         db = sc.nextInt();
 
         for (int i = 0; i < db; i++) {
-            System.out.print("Add meg a szarzőt: ");
+            System.out.print("Add meg a szerzőt: ");
             String szerzo = sc.next();
             System.out.print("Add meg a tartalomat: ");
             String tartalom = sc.next();
             bejegyzesekLista.add(new Bejegyzes(szerzo, tartalom));
         }
         beolvas("bejegyzesek.txt");
+        likeOsztas();
+
     }
     public static void beolvas(String fileName){
         try {
@@ -50,5 +54,12 @@ public class Main {
             System.out.println(ex.getMessage());
         }
 
+    }
+
+    public static void likeOsztas(){
+        int bejegyzesekSzorzata = bejegyzesekLista.size() * 20;
+        for (int i = 0; i < bejegyzesekSzorzata; i++) {
+            bejegyzesekLista.get(rnd.nextInt(bejegyzesekLista.size())).like();
+        }
     }
 }
