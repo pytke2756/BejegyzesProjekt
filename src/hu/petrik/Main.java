@@ -2,6 +2,7 @@ package hu.petrik;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class Main {
         likeOsztas();
 
         System.out.println("Add meg mire írjam át a második bejegyzést: ");
-        String modositottBejegyzes = sc.nextLine();
+        String modositottBejegyzes = sc.nextLine(); //itt nem értettem miért nem fogadja el, így et így hagytam
         bejegyzesekLista.get(1).setTartalom(modositottBejegyzes);
 
         kiiratas();
@@ -48,7 +49,10 @@ public class Main {
         String vanEHarmincotLike = harmincotnelTobbLike() ? "Van" : "Nincs";
         System.out.println(vanEHarmincotLike + " olyan bejegyzést ami 35-nél több likeot kapott.");
 
-        System.out.println(tizenotnelKevesebbLike() + " db bejegyzést van ami 15-nél kevesebb likeot kapott.");
+        System.out.println(tizenotnelKevesebbLike() + " db bejegyzést van ami 15-nél kevesebb likeot kapott.\n");
+
+        rendezLikeokAlapjan();
+        kiiratas();
 
     }
     public static void beolvas(String fileName){
@@ -110,5 +114,29 @@ public class Main {
             }
         }
         return db;
+    }
+
+    public static void rendezLikeokAlapjan(){
+        Bejegyzes temp;
+        int n = bejegyzesekLista.size();
+        for (int i = n - 1; i > 0 ; i--) {
+            for (int j = 0; j < i ; j++) {
+                if (bejegyzesekLista.get(j).getLikeok() < bejegyzesekLista.get(j + 1).getLikeok()){
+                    temp = bejegyzesekLista.get(j);
+                    bejegyzesekLista.set(j, bejegyzesekLista.get(j + 1));
+                    bejegyzesekLista.set(j + 1, temp);
+                }
+            }
+        }
+        //bejegyzesek_rendezett.txt
+        try{
+            FileWriter fw = new FileWriter("bejegyzesek_rendezett.txt");
+            for (Bejegyzes item: bejegyzesekLista) {
+                fw.write(item + "\n");
+            }
+            fw.close();
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
